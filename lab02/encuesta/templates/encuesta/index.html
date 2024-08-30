@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <h2>{{ titulo }}</h2>
+
+    <form action="{% url 'encuesta:index' %}" method="post"> 
+        {% csrf_token %}
+        Nombre:
+        <input type="text" name="nombre"><br>
+        
+        Educación:
+        <select name="educacion" id="educacion">
+            <option value="sin-estudios">Sin estudios</option>
+            <option value="educacion-obligatoria">Educación obligatoria</option>
+            <option value="formacion-profesional">Formación profesional</option>
+            <option value="universidad">Estudios universitarios</option>
+        </select><br>
+
+        Nacionalidad:
+        <input type="checkbox" name="idiomas" value="español" id="nacionalidad">Hispana</input>
+        <input type="checkbox" name="idiomas" value="ingles">Inglés</input>
+        <input type="checkbox" name="idiomas" value="frances">Francés</input>
+        <input type="checkbox" name="idiomas" value="aleman">Alemán</br>
+
+        Email:
+        <input type="text" name="email"><br>
+
+        Sitio Web:
+        <input type="text" name="sitioweb"><br>
+
+        <!-- Botón de envío -->
+        <input type="submit" name="submit" value="Enviar">
+    </form>
+    
+</body>
+</html>

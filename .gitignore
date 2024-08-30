@@ -1,0 +1,5 @@
+.venv
+lab02/lab02/__pycache__
+lab02/encuesta/__pycache__/*
+lab02/db.sqlite3
+
