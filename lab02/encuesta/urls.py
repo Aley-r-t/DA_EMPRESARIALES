@@ -22,4 +22,8 @@ app_name = 'encuesta'
 urlpatterns = [
     path('', views.index, name='index'),
     path('enviar', views.enviar, name='enviar'),
+    path('calcular', views.calcular_edad, name='calcular_edad'),
+
+   path('login/', views.login_view, name='login'),  # URL para el login
+    path('calculate-salary/', views.calculate_salary, name='calculate_salary'), 
 ]

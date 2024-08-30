@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarea 1</title>
+    <style>
+        /* Reseteo básico de estilos */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f0f4f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        form {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            background-color: #f9f9f9;
+        }
+
+        input[type="submit"],
+        input[type="reset"] {
+            width: 48%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        input[type="reset"] {
+            background-color: #f44336;
+            color: white;
+        }
+
+        input[type="submit"]:hover,
+        input[type="reset"]:hover {
+            opacity: 0.9;
+        }
+
+        p {
+            text-align: center;
+            font-size: 18px;
+            color: #333;
+        }
+
+        /* Estilos del resultado */
+        h3 {
+            text-align: center;
+            color: #4CAF50;
+            margin-top: 20px;
+        }
+
+        /* Centrado del contenido */
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>Formulario de Datos</h2>
+
+        <form action="{% url 'encuesta:calcular_edad' %}" method="post">
+            {% csrf_token %}
+            <label for="dni">DNI:</label>
+            <input type="text" name="dni" id="dni" required><br>
+
+            <label for="nombres">Nombres:</label>
+            <input type="text" name="nombres" id="nombres" required><br>
+
+            <label for="apellidos">Apellidos:</label>
+            <input type="text" name="apellidos" id="apellidos" required><br>
+
+            <label for="anio">Fecha de Nacimiento:</label>
+            <label for="anio">Año:</label>
+            <input type="number" name="anio" id="anio" min="1900" max="2100" required><br>
+
+            <label for="mes">Mes:</label>
+            <select name="mes" id="mes" required>
+                <option value="1">Enero</option>
+                <option value="2">Febrero</option>
+                <option value="3">Marzo</option>
+                <option value="4">Abril</option>
+                <option value="5">Mayo</option>
+                <option value="6">Junio</option>
+                <option value="7">Julio</option>
+                <option value="8">Agosto</option>
+                <option value="9">Septiembre</option>
+                <option value="10">Octubre</option>
+                <option value="11">Noviembre</option>
+                <option value="12">Diciembre</option>
+            </select><br>
+
+            <label for="dia">Día:</label>
+            <input type="number" name="dia" id="dia" min="1" max="31" required><br>
+
+            <input type="submit" value="Calcular Edad">
+            <input type="reset" value="Salir">
+        </form>
+
+        {% if edad %}
+    <h3>Resultado</h3>
+    <p>Edad: {{ edad }} años</p>
+    <p>Signo Zodiacal: {{ signo_zodiacal }}</p>
+{% endif %}
+    </div>
+
+</body>
+
+</html>
