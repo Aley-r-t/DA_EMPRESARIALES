@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cálculo de Sueldos</title>
+    <style>
+        /* Estilos CSS como se mostraron anteriormente */
+    </style>
+</head>
+<body>
+
+    <div class="salary-container">
+        <h2>Cálculo de Sueldo</h2>
+        <form action="{% url 'encuesta:calculate_employee_salary' %}" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Calcular">
+        </form>
+    </div>
+
+</body>
+</html>

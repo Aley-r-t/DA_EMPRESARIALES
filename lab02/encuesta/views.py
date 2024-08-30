@@ -3,6 +3,7 @@ from django.shortcuts import render
 from datetime import date
 from django import forms
 from django.shortcuts import render, redirect
+from decimal import Decimal
 
 def index(request):
     if request.method == 'POST':
@@ -168,3 +169,51 @@ def calculate_salary(request):
         form = SalaryForm()
 
     return render(request, 'encuesta/tarea1.html', {'form': form})
+
+#parte 3 y final
+# Formulario para el cálculo de sueldo
+class EmployeeSalaryForm(forms.Form):
+    basic_salary = forms.DecimalField(label="Básico", min_value=0, decimal_places=2)
+    years_worked = forms.IntegerField(label="Años de Antigüedad", min_value=0)
+    is_married = forms.BooleanField(label="¿Es casado?", required=False)
+    children_count = forms.IntegerField(label="Cantidad de Hijos", min_value=0)
+
+def calculate_employee_salary(request):
+    if request.method == 'POST':
+        form = EmployeeSalaryForm(request.POST)
+        if form.is_valid():
+            basic_salary = form.cleaned_data['basic_salary']
+            years_worked = form.cleaned_data['years_worked']
+            is_married = form.cleaned_data['is_married']
+            children_count = form.cleaned_data['children_count']
+
+            # Convierte los multiplicadores a Decimal
+            if children_count <= 7:
+                importe_antiguedad = basic_salary * Decimal(0.10)
+            else:
+                importe_antiguedad = basic_salary * Decimal(0.15)
+
+            if is_married:
+                importe_estado_civil = basic_salary * Decimal(0.02)
+            else:
+                importe_estado_civil = Decimal(100)
+
+            if children_count <= 4:
+                importe_hijos = basic_salary * Decimal(0.01) * children_count
+            else:
+                importe_hijos = Decimal(500)
+
+            sueldo_total = basic_salary + importe_antiguedad + importe_estado_civil + importe_hijos
+
+            return render(request, 'encuesta/salary_results.html', {
+                'basic_salary': basic_salary,
+                'years_worked': years_worked,
+                'importe_antiguedad': importe_antiguedad,
+                'importe_estado_civil': importe_estado_civil,
+                'importe_hijos': importe_hijos,
+                'sueldo_total': sueldo_total
+            })
+    else:
+        form = EmployeeSalaryForm()
+
+    return render(request, 'encuesta/tarea3.html', {'form': form})

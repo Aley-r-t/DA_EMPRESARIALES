@@ -24,6 +24,7 @@ urlpatterns = [
     path('enviar', views.enviar, name='enviar'),
     path('calcular', views.calcular_edad, name='calcular_edad'),
 
-   path('login/', views.login_view, name='login'),  # URL para el login
-    path('calculate-salary/', views.calculate_salary, name='calculate_salary'), 
+    path('login/', views.login_view, name='login'),  # URL para el login
+    path('calculate-salary/', views.calculate_salary, name='calculate_salary'),
+    path('calculate-employee-salary/', views.calculate_employee_salary, name='calculate_employee_salary'), 
 ]

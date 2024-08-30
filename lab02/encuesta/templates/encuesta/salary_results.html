@@ -17,27 +17,29 @@
             background-color: #ffffff;
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
             width: 400px;
         }
         .result-container h2 {
             text-align: center;
             margin-bottom: 20px;
+            color: #333;
         }
         .result-container p {
-            font-size: 18px;
+            font-size: 16px;
             margin-bottom: 10px;
+            color: #333;
         }
     </style>
 </head>
 <body>
     <div class="result-container">
         <h2>Resultado de Cálculo de Sueldo</h2>
-        <p>Básico: S/. {{ basic_salary }}</p>
-        <p>Importe Antigüedad: S/. {{ importe_antiguedad }}</p>
-        <p>Importe Estado Civil: S/. {{ importe_estado_civil }}</p>
-        <p>Importe Hijos: S/. {{ importe_hijos }}</p>
-        <p>Sueldo Total: S/. {{ sueldo_total }}</p>
+        <p><strong>Básico:</strong> S/. {{ basic_salary }}</p>
+        <p><strong>Importe Antigüedad:</strong> S/. {{ importe_antiguedad }}</p>
+        <p><strong>Importe Estado Civil:</strong> S/. {{ importe_estado_civil }}</p>
+        <p><strong>Importe Hijos:</strong> S/. {{ importe_hijos }}</p>
+        <p><strong>Sueldo Total:</strong> S/. {{ sueldo_total }}</p>
     </div>
 </body>
 </html>
