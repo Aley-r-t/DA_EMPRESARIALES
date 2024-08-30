@@ -1,42 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Formulario de Encuesta</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .form-container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            color: #555;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input[type="text"],
+        select {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            background-color: #f9f9f9;
+            outline: none;
+        }
+
+        input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .checkbox-group {
+            margin-bottom: 15px;
+        }
+
+        .checkbox-group label {
+            display: inline-block;
+            margin-right: 20px;
+            font-weight: normal;
+        }
+    </style>
 </head>
+
 <body>
 
-    <h2>{{ titulo }}</h2>
+    <div class="form-container">
+        <h2>{{ titulo }}</h2>
+        <form action="{% url 'encuesta:index' %}" method="post">
+            {% csrf_token %}
+            <label for="nombre">Nombre:</label>
+            <input type="text" name="nombre" id="nombre"><br>
 
-    <form action="{% url 'encuesta:index' %}" method="post"> 
-        {% csrf_token %}
-        Nombre:
-        <input type="text" name="nombre"><br>
-        
-        Educación:
-        <select name="educacion" id="educacion">
-            <option value="sin-estudios">Sin estudios</option>
-            <option value="educacion-obligatoria">Educación obligatoria</option>
-            <option value="formacion-profesional">Formación profesional</option>
-            <option value="universidad">Estudios universitarios</option>
-        </select><br>
+            <label for="educacion">Educación:</label>
+            <select name="educacion" id="educacion">
+                <option value="sin-estudios">Sin estudios</option>
+                <option value="educacion-obligatoria">Educación obligatoria</option>
+                <option value="formacion-profesional">Formación profesional</option>
+                <option value="universidad">Estudios universitarios</option>
+            </select><br>
 
-        Nacionalidad:
-        <input type="checkbox" name="idiomas" value="español" id="nacionalidad">Hispana</input>
-        <input type="checkbox" name="idiomas" value="ingles">Inglés</input>
-        <input type="checkbox" name="idiomas" value="frances">Francés</input>
-        <input type="checkbox" name="idiomas" value="aleman">Alemán</br>
+            <label for="nacionalidad">Nacionalidad:</label>
+            <div class="checkbox-group">
+                <label><input type="checkbox" name="idiomas" value="español" id="nacionalidad"> Hispana</label>
+                <label><input type="checkbox" name="idiomas" value="ingles"> Inglés</label>
+                <label><input type="checkbox" name="idiomas" value="frances"> Francés</label>
+                <label><input type="checkbox" name="idiomas" value="aleman"> Alemán</label>
+            </div>
 
-        Email:
-        <input type="text" name="email"><br>
+            <label for="email">Email:</label>
+            <input type="text" name="email" id="email"><br>
 
-        Sitio Web:
-        <input type="text" name="sitioweb"><br>
+            <label for="sitioweb">Sitio Web:</label>
+            <input type="text" name="sitioweb" id="sitioweb"><br>
 
-        <!-- Botón de envío -->
-        <input type="submit" name="submit" value="Enviar">
-    </form>
-    
+            <input type="submit" name="submit" value="Enviar">
+        </form>
+    </div>
+
 </body>
+
 </html>

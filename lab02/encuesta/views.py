@@ -131,44 +131,8 @@ def login_view(request):
 
     return render(request, 'encuesta/login.html', {'form': form})
 
-def calculate_salary(request):
-    if request.method == 'POST':
-        form = SalaryForm(request.POST)
-        if form.is_valid():
-            basic_salary = form.cleaned_data['basic_salary']
-            years_worked = form.cleaned_data['years_worked']
-            is_married = form.cleaned_data['is_married']
-            children_count = form.cleaned_data['children_count']
-
-            if children_count <= 7:
-                importe_antiguedad = basic_salary * 0.10
-            else:
-                importe_antiguedad = basic_salary * 0.15
-
-            if is_married:
-                importe_estado_civil = basic_salary * 0.02
-            else:
-                importe_estado_civil = 100
-
-            if children_count <= 4:
-                importe_hijos = basic_salary * 0.01 * children_count
-            else:
-                importe_hijos = 500
-
-            sueldo_total = basic_salary + importe_antiguedad + importe_estado_civil + importe_hijos
-
-            return render(request, 'encuesta/salary_results.html', {
-                'basic_salary': basic_salary,
-                'years_worked': years_worked,
-                'importe_antiguedad': importe_antiguedad,
-                'importe_estado_civil': importe_estado_civil,
-                'importe_hijos': importe_hijos,
-                'sueldo_total': sueldo_total
-            })
-    else:
-        form = SalaryForm()
-
-    return render(request, 'encuesta/tarea1.html', {'form': form})
+def error_404(request, exception):
+    return render(request, 'encuesta/404.html', status=404)
 
 #parte 3 y final
 # Formulario para el cálculo de sueldo

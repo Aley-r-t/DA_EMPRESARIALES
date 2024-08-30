@@ -1,23 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Respuesta</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .response-container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+        }
+
+        h2 {
+            text-align: center;
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 16px;
+            margin: 10px 0;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        ul li {
+            background-color: #007bff;
+            color: white;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 15px;
+        }
+
+        ul li:nth-child(even) {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
+
 <body>
-    <h2>{{ titulo }}</h2>
-    <p>Nombre: {{ nombre }}</p>
-    <p>Clave: {{ clave }}</p>
-    <p>Educacion: {{ educacion }}</p>
-    <p>Idiomas:</p>
-    <ul>
-        {% for item in idiomas %}
+    <div class="response-container">
+        <h2>{{ titulo }}</h2>
+        <p><strong>Nombre:</strong> {{ nombre }}</p>
+        <p><strong>Clave:</strong> {{ clave }}</p>
+        <p><strong>Educación:</strong> {{ educacion }}</p>
+        <p><strong>Idiomas:</strong></p>
+        <ul>
+            {% for item in idiomas %}
             <li>{{ item }}</li>
-        {% endfor %}
-    </ul>
-    <p>Email: {{ correo }}</p>
-    <p>Sitio Web: {{ website }}</p>    
-    
+            {% endfor %}
+        </ul>
+        <p><strong>Email:</strong> {{ correo }}</p>
+        <p><strong>Sitio Web:</strong> {{ website }}</p>
+    </div>
 </body>
+
 </html>
